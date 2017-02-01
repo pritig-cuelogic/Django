@@ -10,6 +10,8 @@ def index(request):
 	template = loader.get_template('polls/index.html')
 	context = {
 	    'latest_question_list': latest_question_list,
+	    'first_name': 'Priti',
+	    'last_name': 'Gupta'
 	}
 	return HttpResponse(template.render(context, request))
 
