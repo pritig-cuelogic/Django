@@ -23,6 +23,7 @@ from polls.forms import LoginForm
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm},name = 'login'),
+    url(r'^login/$', views.login, {'template_name': 'login.html', 
+        'authentication_form': LoginForm},name = 'login'),
     url(r'^logout/$', views.logout, {'next_page': '/login'}),
 ]
