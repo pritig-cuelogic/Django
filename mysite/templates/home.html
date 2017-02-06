@@ -1,5 +1,17 @@
+{% load i18n %} 
+<title>{% trans "Home Page" %}</title>
+{% comment %}Translators: View verb comments testing{% endcomment %}
 {% block content %}
 <a href="/logout">Logout</a>
+<h5>{{ message2 }}</h5>
+<br>
+{{lan}}
+{# Translators: This is a text of the base template #}
 <h1>Hello</h1>
 <p>You are on your Dashboard</p>
+{% language 'bg' %}
+    {% get_current_language as LANGUAGE_CODE %}
+    <!-- Current language: {{ LANGUAGE_CODE }} -->
+    <p>{% trans "Today is November 26" %}</p>
+{% endlanguage %}
 {% endblock %}

@@ -4,6 +4,8 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext
+from django.utils import translation
 
 from .models import Question, Choice
 
@@ -41,8 +43,15 @@ def vote(request, question_id):
 	else:
 		selected_choice.votes += 1
 		selected_choice.save()
-		return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+		return HttpResponseRedirect(reverse('polls:results',
+		                            args=(question.id,)))
 
 @login_required(login_url="login/")
 def home(request):
-	return render(request,"home.html")
+	# Translators: This message appears on the home page only
+	message2 = ugettext("Today is November 26.")
+	lan = request.LANGUAGE_CODE
+	return render(request, 
+    	          'home.html',{'message2': message2,
+    	                       'lan': lan,
+    	             })
