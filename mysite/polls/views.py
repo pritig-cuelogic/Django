@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Choice
 
@@ -40,5 +41,9 @@ def vote(request, question_id):
 	else:
 		selected_choice.votes += 1
 		selected_choice.save()
-		return HttpResponseRedirect(reverse('polls:results',
-		            args=(question.id,)))
+		return HttpResponseRedirect(reverse('polls:results', 
+			args=(question.id,)))
+
+@login_required(login_url="login/")
+def home(request):
+	return render(request,"home.html")
