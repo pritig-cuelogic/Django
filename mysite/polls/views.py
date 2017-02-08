@@ -46,4 +46,5 @@ def vote(request, question_id):
 
 @login_required(login_url="login/")
 def home(request):
+	print "in home"
 	return render(request,"home.html")
